@@ -2,8 +2,8 @@
 /*
 Plugin Name: WooCommerce Australia
 Plugin URI: https://github.com/OM4/woocommerce-australia
-Description: For Australian-based stores using WooCommerce. It improves WooCommerce by renaming "Sort Code" to "BSB".
-Version: 1.1-dev
+Description: Improvements for Australian-based stores using WooCommerce.
+Version: 1.2
 Author: OM4
 Author URI: http://om4.com.au/
 Text Domain: woocommerce-australia

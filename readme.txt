@@ -25,10 +25,13 @@ If you have any other suggestions for how WooCommerce can be improved for Austra
 
 == Installation ==
 
-1. Install and activate WooCommerce.
-1. Install and activate this plugin.
+1. Download the latest stable version of the plugin from https://github.com/OM4/woocommerce-australia/archive/release.zip.
+1. Install this plugin via WordPress Dashboard, Plugins, Add New, Upload.
 
 == Changelog ==
+
+= 1.1 =
+* Checkout improvements if selling to Australia only.
 
 = 1.0 =
 * Initial release.
