@@ -3,7 +3,7 @@
 Plugin Name: WooCommerce Australia
 Plugin URI: https://github.com/OM4/woocommerce-australia
 Description: For Australian-based stores using WooCommerce. It improves WooCommerce by renaming "Sort Code" to "BSB".
-Version: 1.0
+Version: 1.1-dev
 Author: OM4
 Author URI: http://om4.com.au/
 Text Domain: woocommerce-australia
@@ -44,6 +44,8 @@ if ( ! class_exists( 'WC_Australia' ) ) {
 		 */
 		private static $instance = null;
 
+		private $selling_to_au_only = false;
+
 		/**
 		 * Creates or returns an instance of this class
 		 * @return WC_Australia A single instance of this class
@@ -68,23 +70,52 @@ if ( ! class_exists( 'WC_Australia' ) ) {
 		 */
 		public function plugins_loaded() {
 			if ( class_exists( 'WooCommerce' ) ) {
-				add_filter( 'gettext', array( $this, 'sort_code_rename_to_bsb' ), 10, 3 );
+				add_action( 'init', array( $this, 'init' ), 11 );
 			}
 		}
 
 		/**
-		 * Rename WooCommmerce's "Sort Code" to "BSB". Useful for Australian stores
-		 *
-		 * Initial idea courtesy of https://gist.github.com/renegadesk/8312649
+		 * Initialise the actual functionality of this plugin during the 'init' hook so that WooCommerce has been intialised
 		 */
-		public function sort_code_rename_to_bsb( $translation, $text, $domain ) {
+		public function init() {
+			add_filter( 'gettext', array( $this, 'gettext' ), 10, 3 );
+
+			$countries =WC()->countries->get_allowed_countries();
+			if ( isset( $countries['AU'] ) && 1 ==sizeof( $countries ) ) {
+				$this->selling_to_au_only = true;
+			}
+		}
+
+		/**
+		 * Filter WooCommerce strings so we can change them.
+		 */
+		public function gettext( $translation, $text, $domain ) {
+
 			if ( 'woocommerce' == $domain ) {
-				switch ( $text ) {
-					case 'Sort Code':
-						$translation = 'BSB';
-						break;
+				// Only override WooCommerce text
+
+				// Rename WooCommmerce's "Sort Code" to "BSB". Useful for Australian stores
+				// Initial idea courtesy of https://gist.github.com/renegadesk/8312649
+				if ( 'Sort Code' == $translation ) {
+					return 'BSB';
+				}
+
+				// Improve checkout labels if selling to Australia only
+				if ( $this->selling_to_au_only ) {
+					switch ( $translation ) {
+						case 'Town / City':
+							return 'Suburb';
+							break;
+						case 'State / County':
+							return 'State';
+							break;
+						case 'Postcode / Zip':
+							return 'Postcode';
+							break;
+					}
 				}
 			}
+
 			return $translation;
 		}
 

@@ -16,6 +16,10 @@ This plugin is for Australian-based stores using WooCommerce.
 It improves WooCommerce in the following ways:
 
 * BACS Payment Method: renames "Sort Code" to "BSB".
+* Checkout improvements if selling to Australia only:
+  * Rename "Town / City" field label to "Suburb"
+  * Rename "State / County" field label to "State"
+  * Rename "Postcode / Zip" field label to "Postcode"
 
 If you have any other suggestions for how WooCommerce can be improved for Australian-based stores, please [add your suggestion via GitHub](https://github.com/OM4/woocommerce-australia/issues).
 
