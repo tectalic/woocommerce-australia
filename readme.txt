@@ -3,7 +3,7 @@ Contributors: jamescollins
 Tags: woocommerce, australia, bacs, bsb, checkout, suburb, state, postcode
 Requires at least: 3.9
 Tested up to: 3.9.1
-Stable tag: 1.0
+Stable tag: 1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -29,6 +29,9 @@ If you have any other suggestions for how WooCommerce can be improved for Austra
 1. Install this plugin via WordPress Dashboard, Plugins, Add New, Upload.
 
 == Changelog ==
+
+= 1.2 =
+* Readme updates
 
 = 1.1 =
 * Checkout improvements if selling to Australia only.
