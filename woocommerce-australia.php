@@ -2,10 +2,10 @@
 /*
 Plugin Name: WooCommerce Australia
 Plugin URI: https://github.com/OM4/woocommerce-australia
-Description: Improvements for Australian-based stores using WooCommerce.
-Version: 1.2
+Description: Improvements for Australian-based stores using WooCommerce. Only required if running WooCommerce 2.2.x or older.
+Version: 1.3
 Author: OM4
-Author URI: http://om4.com.au/
+Author URI: https://om4.com.au/
 Text Domain: woocommerce-australia
 Git URI: https://github.com/OM4/woocommerce-australia
 Git Branch: release
@@ -13,7 +13,7 @@ License: GPLv2
 */
 
 /*
-Copyright 2014 OM4 (email: info@om4.com.au    web: http://om4.com.au/)
+Copyright 2014-2015 OM4 (email: info@om4.com.au    web: http://om4.com.au/)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -70,7 +70,13 @@ if ( ! class_exists( 'WC_Australia' ) ) {
 		 */
 		public function plugins_loaded() {
 			if ( class_exists( 'WooCommerce' ) ) {
-				add_action( 'init', array( $this, 'init' ), 11 );
+				if (  version_compare( WOOCOMMERCE_VERSION, '2.3.0', '>=' ) ) {
+					// No need for this plugin when using WooCommerce v2.3.0 or newer
+					return;
+				} else {
+					// WooCommerce v2.2.x or older
+					add_action( 'init', array( $this, 'init' ), 11 );
+				}
 			}
 		}
 
@@ -95,12 +101,14 @@ if ( ! class_exists( 'WC_Australia' ) ) {
 				// Only override WooCommerce text
 
 				// Rename WooCommmerce's "Sort Code" to "BSB". Useful for Australian stores
+				// WooCommerce v2.3.0 does this automatically, so this is only required for WooCommerce v2.2.x and older
 				// Initial idea courtesy of https://gist.github.com/renegadesk/8312649
 				if ( 'Sort Code' == $translation ) {
 					return 'BSB';
 				}
 
 				// Improve checkout labels if selling to Australia only
+				// WooCommerce v2.2.0 does this automatically, so this functionality is only required for WooCommerce v2.1.x and older
 				if ( $this->selling_to_au_only ) {
 					switch ( $translation ) {
 						case 'Town / City':

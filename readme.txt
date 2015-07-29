@@ -2,8 +2,8 @@
 Contributors: jamescollins
 Tags: woocommerce, australia, bacs, bsb, checkout, suburb, state, postcode
 Requires at least: 3.9
-Tested up to: 3.9.1
-Stable tag: 1.2
+Tested up to: 4.2.3
+Stable tag: 1.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -11,7 +11,9 @@ Improvements to WooCommerce for Australian-based stores.
 
 == Description ==
 
-This plugin is for Australian-based stores using WooCommerce.
+This plugin is for Australian-based stores using WooCommerce v2.2.x or older.
+
+If you're runnining WooCommerce v2.3 or newer, this plugin isn't required.
 
 It improves WooCommerce in the following ways:
 
@@ -29,6 +31,10 @@ If you have any other suggestions for how WooCommerce can be improved for Austra
 1. Install this plugin via WordPress Dashboard, Plugins, Add New, Upload.
 
 == Changelog ==
+
+= 1.3 =
+* Clarify which versions of WooCommerce this plugin should be used with.
+* Readme updates
 
 = 1.2 =
 * Readme updates
